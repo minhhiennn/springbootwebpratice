@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <h1>List Student</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <a th:href="@{/students/new}" class="btn btn-primary btm-sm mb-3">Add Student</a>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Student First Name</th>
+                <th scope="col">Student Last Name</th>
+                <th scope="col">Student Email</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student: ${students}">
+                <td th:text="${student.getFirstName()}"></td>
+                <td th:text="${student.getLastName()}"></td>
+                <td th:text="${student.getEmail()}"></td>
+                <td>
+                    <a th:href="@{/students/edit/{id}(id=${student.getId()})}" class="btn btn-primary">Update</a>
+                    <a th:href="@{/students//{id}(id=${student.getId()})}" class="btn btn-danger" style="margin-left: 8px">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
